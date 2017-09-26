@@ -12,11 +12,13 @@ class ManageCoursePage extends Component {
       course: [...props.course],
       errors: {}
     };
+
+    this.updateCourseState = this.updateCourseState.bind(this);
   }
 
   updateCourseState(event) {
     const field = event.target.name;
-    let course = this.state.course;
+    let course = Object.assign({}, this.state.course);
     course[field] = event.target.value;
     return this.setState({ course: course });
   }
@@ -24,6 +26,7 @@ class ManageCoursePage extends Component {
   render() {
     return (
       <CourseForm
+        onChange={this.updateCourseState}
         allAuthors={this.props.authors}
         course={this.state.course}
         errors={this.state.errors}
