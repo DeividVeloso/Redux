@@ -9,10 +9,12 @@ import configureStore from './store/configStore';
 import { Provider } from 'react-redux';
 
 import { loadCourses } from './actions/courseActions';
+import { loadAuthors } from './actions/authorActions';
 
 //Nessa função eu poderia passar um state incial para minha aplicação.
 const store = configureStore();
-store.dispatch(loadCourses()); //Fazendo a chamada para carregar meus cursos na store quando incial a aplicação.
+store.dispatch(loadCourses()); //Fazendo a chamada para carregar meus cursos na store quando inciar a aplicação.
+store.dispatch(loadAuthors());
 
 ReactDOM.render(
   <Provider store={store}>
