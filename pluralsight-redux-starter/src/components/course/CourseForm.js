@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import TextInput from "../common/TextInput";
-import SelectInput from "../common/TextInput";
+import SelectInput from "../common/SelectInput";
 
 const CourseForm = ({
   course,
@@ -23,7 +23,6 @@ const CourseForm = ({
       <SelectInput
         name="authorId"
         label="Author"
-        value={course.authorId}
         onChange={onChange}
         options={allAuthors}
         error={errors.authorId}

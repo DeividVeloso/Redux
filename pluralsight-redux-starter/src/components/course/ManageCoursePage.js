@@ -14,10 +14,17 @@ class ManageCoursePage extends Component {
     };
   }
 
+  updateCourseState(event) {
+    const field = event.target.name;
+    let course = this.state.course;
+    course[field] = event.target.value;
+    return this.setState({ course: course });
+  }
+
   render() {
     return (
       <CourseForm
-        allAuthors={[]}
+        allAuthors={this.props.authors}
         course={this.state.course}
         errors={this.state.errors}
       />
@@ -36,7 +43,18 @@ const mapStateToProps = (state, ownProps) => {
     length: "",
     category: ""
   };
-  return { course: course };
+
+  const authorsFormattedForDropDown = state.authors.map(author => {
+    return {
+      value: author.id,
+      text: `${author.firstName} ${author.lastName}`
+    }
+  })
+
+  return {
+    course: course,
+    authors: authorsFormattedForDropDown
+  };
 };
 
 const mapDispatchToProps = dispatch => {

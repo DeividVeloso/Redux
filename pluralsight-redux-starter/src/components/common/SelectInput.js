@@ -10,7 +10,7 @@ const SelectInput = ({
   options
 }) => {
   return (
-    <div className={wrapperClass}>
+    <div>
       <label htmlFor={name}>{label}</label>
       <div className="field">
         <select
