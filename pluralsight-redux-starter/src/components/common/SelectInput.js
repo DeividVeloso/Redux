@@ -9,8 +9,10 @@ const SelectInput = ({
   error,
   options
 }) => {
+  console.log("value", value);
+  console.log("options", options);
   return (
-    <div>
+    <div className="form-group">
       <label htmlFor={name}>{label}</label>
       <div className="field">
         <select

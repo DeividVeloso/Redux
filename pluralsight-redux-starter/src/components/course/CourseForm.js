@@ -10,6 +10,7 @@ const CourseForm = ({
   loading,
   errors
 }) => {
+console.log(allAuthors)
   return (
     <form>
       <h1>Manage Course</h1>
@@ -23,6 +24,8 @@ const CourseForm = ({
       <SelectInput
         name="authorId"
         label="Author"
+        value={course.authorId}
+        defaultOption="Select an Author"
         onChange={onChange}
         options={allAuthors}
         error={errors.authorId}

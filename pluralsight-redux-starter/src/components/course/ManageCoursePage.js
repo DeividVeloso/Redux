@@ -10,7 +10,7 @@ class ManageCoursePage extends Component {
     super(props, context);
 
     this.state = {
-      course: [...props.course],
+      course: Object.assign({}, props.course),
       errors: {}
     };
 
@@ -18,17 +18,23 @@ class ManageCoursePage extends Component {
     this.saveCourse = this.saveCourse.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.course.id != nextProps.course.id) {
+      console.log("nextProps", nextProps.course);
+      this.setState({ course: Object.assign({}, nextProps.course) });
+    }
+  }
+
   updateCourseState(event) {
     const field = event.target.name;
     let course = Object.assign({}, this.state.course);
     course[field] = event.target.value;
-    return this.setState({ course: course });
+    this.setState({ course: course });
   }
 
   saveCourse(event) {
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course);
-    console.log(this.context.router);
     browserHistory.push("/courses");
   }
 
@@ -38,7 +44,7 @@ class ManageCoursePage extends Component {
         onSave={this.saveCourse}
         onChange={this.updateCourseState}
         allAuthors={this.props.authors}
-        course={this.props.course}
+        course={this.state.course}
         errors={this.state.errors}
       />
     );
@@ -57,7 +63,7 @@ ManageCoursePage.contextType = {
 
 const getCourseById = (courses, id) => {
   const course = courses.filter(course => course.id == id);
-  console.log("course", course)
+  console.log("course", course);
   if (course.length) return course[0]; //Já que o filter sempre retorna um arrray é só pegar o primeiro item
   return null;
 };
@@ -72,7 +78,7 @@ const mapStateToProps = (state, ownProps) => {
     length: "",
     category: ""
   };
-  console.log("courseId", courseId)
+  console.log("courseId", courseId);
   if (courseId) {
     course = getCourseById(state.courses, courseId);
   }
