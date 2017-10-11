@@ -45,7 +45,6 @@ Colocando courses, vou ter acesso no meu componente dessa forma this.props.cours
 2° ownProps ele da acesso as propriedades desse componente container
 */
 function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     courses: state.courses //Vem do reducer courseReducer
   };

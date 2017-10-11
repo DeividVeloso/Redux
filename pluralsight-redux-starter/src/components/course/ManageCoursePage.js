@@ -34,6 +34,7 @@ class ManageCoursePage extends Component {
 
   saveCourse(event) {
     event.preventDefault();
+    console.log(this.state.course);
     this.props.actions.saveCourse(this.state.course);
     browserHistory.push("/courses");
   }
