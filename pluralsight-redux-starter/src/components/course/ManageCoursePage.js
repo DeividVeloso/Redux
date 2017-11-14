@@ -6,7 +6,7 @@ import CourseForm from "./CourseForm";
 import { browserHistory } from "react-router";
 import toastr from "toastr";
 
-class ManageCoursePage extends Component {
+export class ManageCoursePage extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -43,7 +43,6 @@ class ManageCoursePage extends Component {
   saveCourse(event) {
     event.preventDefault();
     this.setState({ saving: true });
-    console.log(this.state.course);
     this.props.actions
       .saveCourse(this.state.course)
       .then(() => this.redirect())
