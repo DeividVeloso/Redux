@@ -27,5 +27,8 @@ describe("Manage Course Page", () => {
     //Testando para ver se é o input certo, pois só tem um com tipo submit
     expect(saveButton.prop("type")).toBe("submit");
     saveButton.simulate("click");
+    expect(wrapper.state().errors.title).toBe(
+      "Title must be at least 5 characters."
+    );
   });
 });
